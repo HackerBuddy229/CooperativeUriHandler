@@ -9,12 +9,8 @@ using CooperativeUriHandler.definitions.enums;
 
 namespace CooperativeUriHandler.definitions.interfaces
 {
-    public interface IUriHandler
+    public interface IUriHandler : IHistoricallyTimed
     {
-        IList<ISuggestion<IDirectory>> GetRecentDirectories(int amountToReturn = 10);
-        IList<ISuggestion<IFile>> GetRecentFiles(int amountToReturn = 10);
-
-
         IDirectory GetDefaultDirectory(DefaultLocation defaultLocation);
 
 
@@ -38,10 +34,5 @@ namespace CooperativeUriHandler.definitions.interfaces
         BinaryReader GetBinaryReader(IFile file);
         BinaryReader GetBinaryReader(ISuggestion<IFile> file);
 
-        void AddToRecent(IDirectory directory);
-        void AddToRecent(ISuggestion<IDirectory> directory);
-        void AddToRecent(IFile file);
-        void AddToRecent(ISuggestion<IFile> file);
-        void AddToRecent(Uri uri);
     }
 }
