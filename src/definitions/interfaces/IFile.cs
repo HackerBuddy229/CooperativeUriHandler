@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CooperativeUriHandler.definitions.interfaces
 {
-    public interface IFile : INamed, IPositioned { }
+    public interface IFile : INamed, IPositioned, IStreamed<IFile> { }
 }

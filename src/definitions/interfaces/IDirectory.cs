@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace CooperativeUriHandler.definitions.interfaces
 {
-    public interface IDirectory : INamed, IPositioned { }
+    public interface IDirectory : INamed, IPositioned, IStreamed<IDirectory> { }
 }
