@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace CooperativeUriHandler.definitions.interfaces
 {
-    public interface IFile : INamed, IPositioned, IStreamed<IFile> { }
+    public interface IFile : INamed, IPositioned { }
 }
