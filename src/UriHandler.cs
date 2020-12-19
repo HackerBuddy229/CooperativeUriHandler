@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CooperativeUriHandler.definitions.enums;
 using CooperativeUriHandler.definitions.interfaces;
 using CooperativeUriHandler.history;
+using CooperativeUriHandler.implementations;
 
 namespace CooperativeUriHandler
 {
@@ -16,12 +17,24 @@ namespace CooperativeUriHandler
 
         public IList<ISuggestion<IDirectory>> GetRecentDirectories(int amountToReturn = 10)
         {
-            throw new NotImplementedException();
+            var output = DirectoryHistory.TypeHistory
+                .Take(amountToReturn)
+                .Select(directory => new Suggestions<IDirectory>(directory))
+                .Cast<ISuggestion<IDirectory>>()
+                .ToList();
+
+            return output;
         }
 
         public IList<ISuggestion<IFile>> GetRecentFiles(int amountToReturn = 10)
         {
-            throw new NotImplementedException();
+            var output = FileHistory.TypeHistory
+                .Take(amountToReturn)
+                .Select(file => new Suggestions<IFile>(file))
+                .Cast<ISuggestion<IFile>>()
+                .ToList();
+
+            return output;
         }
 
         public void AddToRecent(IDirectory directory)
