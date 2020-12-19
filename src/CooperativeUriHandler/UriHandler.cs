@@ -53,7 +53,6 @@ namespace CooperativeUriHandler
         public void AddToRecent(IDirectory directory)
         {
             _ = directory ?? throw new ArgumentNullException(nameof(directory));
-
             DirectoryHistory.TypeHistory.Add(directory);
         }
 
