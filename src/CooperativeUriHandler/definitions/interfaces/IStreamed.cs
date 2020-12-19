@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CooperativeUriHandler.definitions.interfaces
 {
-    public interface IStreamed<in T> where T : IPositioned
+    public interface IStreamed<in T> where T : IPositioned, INamed
     {
         public StreamWriter GetStreamWriter(T location, string filename = "");
         public StreamWriter GetStreamWriter(ISuggestion<T> location, string filename = "");
