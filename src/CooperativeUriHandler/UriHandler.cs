@@ -78,10 +78,21 @@ namespace CooperativeUriHandler
             FileHistory.TypeHistory.Add(file.Suggestion);
         }
 
-        //TODO: implement after implementations of file / directory detections
         public void AddToRecent(Uri uri)
         {
-            throw new NotImplementedException();
+            switch (UriHelper.GetPositionType(uri))
+            {
+                case PositionType.Directory:
+                    var directory = new Directory(uri);
+                    DirectoryHistory.TypeHistory.Add(directory);
+                    break;
+                case PositionType.File:
+                    var file = new File(uri);
+                    FileHistory.TypeHistory.Add(file);
+                    break;
+                default:
+                    return;
+            }
         }
 
         //TODO: 
