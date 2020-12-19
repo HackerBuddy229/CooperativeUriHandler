@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using CooperativeUriHandler.definitions.enums;
@@ -17,8 +18,14 @@ namespace CooperativeUriHandler
 
         public IList<ISuggestion<IDirectory>> GetRecentDirectories(int amountToReturn = 10)
         {
+            if (amountToReturn > 20)
+                amountToReturn = 20;
+
+            if (amountToReturn < 1)
+                amountToReturn = 1;
+
             var output = DirectoryHistory.TypeHistory
-                .Take(amountToReturn)
+                .TakeLast(amountToReturn)
                 .Select(directory => new Suggestions<IDirectory>(directory))
                 .Cast<ISuggestion<IDirectory>>()
                 .ToList();
@@ -28,8 +35,14 @@ namespace CooperativeUriHandler
 
         public IList<ISuggestion<IFile>> GetRecentFiles(int amountToReturn = 10)
         {
+            if (amountToReturn > 20)
+                amountToReturn = 20;
+
+            if (amountToReturn < 1)
+                amountToReturn = 1;
+
             var output = FileHistory.TypeHistory
-                .Take(amountToReturn)
+                .TakeLast(amountToReturn)
                 .Select(file => new Suggestions<IFile>(file))
                 .Cast<ISuggestion<IFile>>()
                 .ToList();
@@ -39,29 +52,40 @@ namespace CooperativeUriHandler
 
         public void AddToRecent(IDirectory directory)
         {
-            throw new NotImplementedException();
+            _ = directory ?? throw new ArgumentNullException(nameof(directory));
+
+            DirectoryHistory.TypeHistory.Add(directory);
         }
 
         public void AddToRecent(ISuggestion<IDirectory> directory)
         {
-            throw new NotImplementedException();
+            _ = directory ?? throw new ArgumentNullException(nameof(directory));
+            _ = directory.Suggestion ?? throw new ArgumentNullException(nameof(directory.Suggestion));
+
+            DirectoryHistory.TypeHistory.Add(directory.Suggestion);
         }
 
         public void AddToRecent(IFile file)
         {
-            throw new NotImplementedException();
+            _ = file ?? throw new ArgumentNullException(nameof(file));
+            FileHistory.TypeHistory.Add(file);
         }
 
         public void AddToRecent(ISuggestion<IFile> file)
         {
-            throw new NotImplementedException();
+            _ = file ?? throw new ArgumentNullException(nameof(file));
+            _ = file.Suggestion ?? throw new ArgumentNullException(nameof(file.Suggestion));
+
+            FileHistory.TypeHistory.Add(file.Suggestion);
         }
 
+        //TODO: implement after implementations of file / directory detections
         public void AddToRecent(Uri uri)
         {
             throw new NotImplementedException();
         }
 
+        //TODO: 
         public IDirectory GetDefaultDirectory(DefaultLocation defaultLocation)
         {
             throw new NotImplementedException();

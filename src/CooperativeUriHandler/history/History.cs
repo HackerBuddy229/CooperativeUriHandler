@@ -9,11 +9,11 @@ namespace CooperativeUriHandler.history
 {
     public class History<T> : IHistory<T>
     {
-        public History(IEnumerable<T> typeHistory)
+        public History(IList<T> typeHistory)
         {
             TypeHistory = typeHistory;
         }
 
-        public IEnumerable<T> TypeHistory { get; }
+        public IList<T> TypeHistory { get; }
     }
 }

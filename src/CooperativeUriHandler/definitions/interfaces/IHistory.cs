@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CooperativeUriHandler.definitions.interfaces
 {
-    public interface IHistory<out T>
+    public interface IHistory<T>
     {
-        public IEnumerable<T> TypeHistory { get; }
+        public IList<T> TypeHistory { get; }
     }
 }
