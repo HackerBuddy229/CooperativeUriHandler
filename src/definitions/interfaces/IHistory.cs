@@ -8,6 +8,6 @@ namespace CooperativeUriHandler.definitions.interfaces
 {
     public interface IHistory<out T>
     {
-        public IEnumerable<T> History { get; }
+        public IEnumerable<T> TypeHistory { get; }
     }
 }
