@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
+using CooperativeUriHandler;
+using CooperativeUriHandler.definitions.interfaces;
+using CooperativeUriHandler.implementations;
 
 namespace CooperativeUriHandlerShould
 {
@@ -12,7 +11,42 @@ namespace CooperativeUriHandlerShould
         [Fact]
         public void GetRecentDirectoriesShould()
         {
+            Func<IUriHandler> newHandler = () => new UriHandler(); 
+            var uriHandler = newHandler.Invoke();
 
+            //test more than 20
+            for (var index = 0; index < 25; index++)
+                uriHandler.AddToRecent(new Directory());
+
+            Assert.Equal(20, uriHandler.GetRecentDirectories(21).Count);
+            //test less than 1
+            uriHandler = newHandler.Invoke();
+
+            for (var index = 0; index < 25; index++)
+                uriHandler.AddToRecent(new Directory());
+            
+            Assert.Equal(1, uriHandler.GetRecentDirectories(-12).Count);
+            
+        }
+
+        [Fact]
+        public void GetRecentFilesShould()
+        {
+            Func<IUriHandler> newHandler = () => new UriHandler();
+            var uriHandler = newHandler.Invoke();
+
+            //test more than 20
+            for (var index = 0; index < 25; index++)
+                uriHandler.AddToRecent(new File());
+
+            Assert.Equal(20, uriHandler.GetRecentFiles(21).Count);
+            //test less than 1
+            uriHandler = newHandler.Invoke();
+
+            for (var index = 0; index < 25; index++)
+                uriHandler.AddToRecent(new File());
+
+            Assert.Equal(1, uriHandler.GetRecentFiles(-12).Count);
         }
     }
 }
