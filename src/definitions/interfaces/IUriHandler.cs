@@ -11,6 +11,6 @@ namespace CooperativeUriHandler.definitions.interfaces
 {
     public interface IUriHandler : IHistoricallyTimed
     {
-        IDirectory GetDefaultDirectory(DefaultLocation defaultLocation);
+        public IDirectory GetDefaultDirectory(DefaultLocation defaultLocation);
     }
 }

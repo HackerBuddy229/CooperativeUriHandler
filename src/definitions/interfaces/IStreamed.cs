@@ -9,18 +9,18 @@ namespace CooperativeUriHandler.definitions.interfaces
 {
     public interface IStreamed<in T> where T : IPositioned
     {
-        StreamWriter GetStreamWriter(T location, string filename = "");
-        StreamWriter GetStreamWriter(ISuggestion<T> location, string filename = "");
+        public StreamWriter GetStreamWriter(T location, string filename = "");
+        public StreamWriter GetStreamWriter(ISuggestion<T> location, string filename = "");
 
 
-        StreamReader GetStreamReader(T location, string filename = "");
-        StreamReader GetStreamReader(ISuggestion<T> location, string filename = "");
+        public StreamReader GetStreamReader(T location, string filename = "");
+        public StreamReader GetStreamReader(ISuggestion<T> location, string filename = "");
 
-        BinaryWriter GetBinaryWriter(T location, string filename = "");
-        BinaryWriter GetBinaryWriter(ISuggestion<T> location, string filename = "");
+        public BinaryWriter GetBinaryWriter(T location, string filename = "");
+        public BinaryWriter GetBinaryWriter(ISuggestion<T> location, string filename = "");
 
 
-        BinaryReader GetBinaryReader(T location, string filename = "");
-        BinaryReader GetBinaryReader(ISuggestion<T> location, string filename = "");
+        public BinaryReader GetBinaryReader(T location, string filename = "");
+        public BinaryReader GetBinaryReader(ISuggestion<T> location, string filename = "");
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CooperativeUriHandler.definitions.interfaces
 {
-    public interface ISuggestion<out T> : IReadable
+    public interface IHistory<out T>
     {
-        public T Suggestion { get; }
+        public IEnumerable<T> History { get; }
     }
 }

@@ -8,13 +8,16 @@ namespace CooperativeUriHandler.definitions.interfaces
 {
     public interface IHistoricallyTimed
     {
-        IList<ISuggestion<IDirectory>> GetRecentDirectories(int amountToReturn = 10);
-        IList<ISuggestion<IFile>> GetRecentFiles(int amountToReturn = 10);
+        public IHistory<IDirectory> DirectoryHistory { get; }
+        public IHistory<IFile> FileHistory { get; }
 
-        void AddToRecent(IDirectory directory);
-        void AddToRecent(ISuggestion<IDirectory> directory);
-        void AddToRecent(IFile file);
-        void AddToRecent(ISuggestion<IFile> file);
-        void AddToRecent(Uri uri);
+        public IList<ISuggestion<IDirectory>> GetRecentDirectories(int amountToReturn = 10);
+        public IList<ISuggestion<IFile>> GetRecentFiles(int amountToReturn = 10);
+
+        public void AddToRecent(IDirectory directory);
+        public void AddToRecent(ISuggestion<IDirectory> directory);
+        public void AddToRecent(IFile file);
+        public void AddToRecent(ISuggestion<IFile> file);
+        public void AddToRecent(Uri uri);
     }
 }

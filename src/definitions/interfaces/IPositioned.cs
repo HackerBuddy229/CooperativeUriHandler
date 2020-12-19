@@ -8,6 +8,6 @@ namespace CooperativeUriHandler.definitions.interfaces
 {
     public interface IPositioned
     {
-        Uri Uri { get; }
+        public Uri Uri { get; }
     }
 }

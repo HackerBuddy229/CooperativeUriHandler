@@ -8,6 +8,6 @@ namespace CooperativeUriHandler.definitions.interfaces
 {
     public interface IReadable
     {
-        string HumanReadableRepresentation { get; }
+        public string HumanReadableRepresentation { get; }
     }
 }

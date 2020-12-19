@@ -8,6 +8,6 @@ namespace CooperativeUriHandler.definitions.interfaces
 {
     public interface INamed
     {
-        string Name { get; }
+        public string Name { get; }
     }
 }
