@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using CooperativeUriHandler.definitions.enums;
 using CooperativeUriHandler.definitions.interfaces;
+using CooperativeUriHandler.exceptions;
 using CooperativeUriHandler.history;
 using CooperativeUriHandler.implementations;
+using CooperativeUriHandler.SystemLocationDefaults;
 
 namespace CooperativeUriHandler
 {
     public class UriHandler : IUriHandler
     {
+
+        public UriHandler()
+        {
+            SetEnvironment();
+        }
         public IHistory<IDirectory> DirectoryHistory { get; private set; } = new History<IDirectory>(new List<IDirectory>());
         public IHistory<IFile> FileHistory { get; private set; } = new History<IFile>(new List<IFile>());
 
@@ -97,6 +105,22 @@ namespace CooperativeUriHandler
         {
             throw new NotImplementedException();
         }
+
+        private void SetEnvironment()
+        {
+
+            ISystemDefault currentDefault = null;
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                currentDefault = new LinuxLocationDefault("");
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                currentDefault = new WindowsLocationDefault("");
+
+            _currentDefault = currentDefault ?? throw new RuntimeNotSupportedException(RuntimeInformation.OSDescription);
+        }
+
+        private ISystemDefault _currentDefault;
 
     }
 }
