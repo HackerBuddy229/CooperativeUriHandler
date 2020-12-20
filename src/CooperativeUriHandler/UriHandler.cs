@@ -80,18 +80,15 @@ namespace CooperativeUriHandler
 
         public void AddToRecent(Uri uri)
         {
-            switch (UriHelper.GetPositionType(uri))
+            if (UriHelper.GetPositionType(uri) == PositionType.Directory)
             {
-                case PositionType.Directory:
-                    var directory = new Directory(uri);
-                    DirectoryHistory.TypeHistory.Add(directory);
-                    break;
-                case PositionType.File:
-                    var file = new File(uri);
-                    FileHistory.TypeHistory.Add(file);
-                    break;
-                default:
-                    return;
+                var directory = new Directory(uri);
+                DirectoryHistory.TypeHistory.Add(directory);
+            }
+            else if (UriHelper.GetPositionType(uri) == PositionType.File)
+            {
+                var file = new File(uri);
+                FileHistory.TypeHistory.Add(file);
             }
         }
 

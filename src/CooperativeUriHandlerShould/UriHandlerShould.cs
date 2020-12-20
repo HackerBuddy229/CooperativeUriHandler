@@ -99,7 +99,20 @@ namespace CooperativeUriHandlerShould
         [Fact]
         public void AddUnknownToRecentShould()
         {
+            Func<UriHandler> newUriHandler = () => new UriHandler();
 
+            var directoryUri = new Uri("file:///directory/");
+            var handler = newUriHandler.Invoke();
+            handler.AddToRecent(directoryUri);
+
+            Assert.Equal(1, handler.GetRecentDirectories().Count);
+
+
+            var fileUri = new Uri("file:///file.txt");
+            handler = newUriHandler.Invoke();
+            handler.AddToRecent(fileUri);
+
+            Assert.Equal(1, handler.GetRecentFiles().Count);
         }
     }
 }
