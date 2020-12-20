@@ -100,10 +100,19 @@ namespace CooperativeUriHandler
             }
         }
 
-        //TODO: 
+
         public IDirectory GetDefaultDirectory(DefaultLocation defaultLocation)
         {
-            throw new NotImplementedException();
+            var directoryUri = defaultLocation switch
+            {
+                DefaultLocation.Root => _currentDefault.SystemRootUri,
+                DefaultLocation.Downloads => _currentDefault.DownloadsUri,
+                DefaultLocation.Home => _currentDefault.HomeUri,
+                _ => null
+            };
+            _ = directoryUri ?? throw new InvalidRequestException(nameof(GetDefaultDirectory) + defaultLocation);
+
+            return new Directory(directoryUri);
         }
 
         private void SetEnvironment()

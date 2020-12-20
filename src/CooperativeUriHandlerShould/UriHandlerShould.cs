@@ -114,5 +114,11 @@ namespace CooperativeUriHandlerShould
 
             Assert.Equal(1, handler.GetRecentFiles().Count);
         }
+
+        [Fact]
+        public void GetDefaultDirectoryShouldOnWindows()
+        {
+            
+        }
     }
 }

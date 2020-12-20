@@ -8,6 +8,6 @@ namespace CooperativeUriHandler.definitions.enums
 {
     public enum DefaultLocation
     {
-        Home, Temporary, Downloads
+        Home, Root, Downloads
     }
 }
