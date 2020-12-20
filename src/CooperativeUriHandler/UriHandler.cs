@@ -108,14 +108,14 @@ namespace CooperativeUriHandler
 
         private void SetEnvironment()
         {
-
+            var userIdentifier = Environment.UserName;
             ISystemDefault currentDefault = null;
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                currentDefault = new LinuxLocationDefault("");
+                currentDefault = new LinuxLocationDefault(userIdentifier);
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                currentDefault = new WindowsLocationDefault("");
+                currentDefault = new WindowsLocationDefault(userIdentifier);
 
             _currentDefault = currentDefault ?? throw new RuntimeNotSupportedException(RuntimeInformation.OSDescription);
         }
